@@ -1,27 +1,26 @@
 package Annotation.quest_1;
 
-@annotationInit
 public class AnnotationClass {
 
-    @annotationRandom(num = 100+1)
+    @annotationRandom()
     public void Test1(){
-
+        System.out.println("run Test1");
     }
 
-    @annotationSumm(num_1 = 20, num_2 = 10)
+    @annotationSumm()
     public void Test2(){
-
+        System.out.println("run Test2");
     }
 
     @annotationSleep(delay = 5)
-    @annotationPrintSomsing(somesing = "Doves say ururu")
+    @annotationPrintSomsing()
     public void Test3(){
-
+        System.out.println("run Test3");
     }
 
-    @annotationRandom(num = 50+1)
+    @annotationRandom()
     @annotationSleep(delay = 10)
     public void Test4(){
-
+        System.out.println("run Test4");
     }
 }

@@ -48,7 +48,7 @@ public class MessageListener {
                 }
                 m.invoke(listener,arrayArgs);
             }catch (ArrayIndexOutOfBoundsException e){
-                System.out.println(e.getMessage());
+
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {

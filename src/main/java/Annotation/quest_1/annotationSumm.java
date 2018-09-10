@@ -8,6 +8,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
     @Retention(RetentionPolicy.RUNTIME)
     public @interface annotationSumm{
-        int num_1();
-        int num_2();
+        String name()default "annotationSumm";
     }
