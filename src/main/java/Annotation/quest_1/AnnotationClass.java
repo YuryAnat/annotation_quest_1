@@ -12,14 +12,14 @@ public class AnnotationClass {
         System.out.println("run Test2");
     }
 
-    @annotationSleep(delay = 5)
+    @annotationSleep(delay = 5000)
     @annotationPrintSomsing()
     public void Test3(){
         System.out.println("run Test3");
     }
 
     @annotationRandom()
-    @annotationSleep(delay = 10)
+    @annotationSleep(delay=10000)
     public void Test4(){
         System.out.println("run Test4");
     }
