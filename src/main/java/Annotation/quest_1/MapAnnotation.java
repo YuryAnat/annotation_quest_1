@@ -16,7 +16,7 @@ public class MapAnnotation {
             forList fl = entry.getValue();
             for (Map.Entry<String,Integer> stringIntegerEntry : fl.getAnnotationNameAndArgs().entrySet()) {
                 if (stringIntegerEntry.getValue()> 0){
-                    System.out.println("\tAnnotation name: " + stringIntegerEntry.getKey() + " delay fo run: " + stringIntegerEntry.getValue());
+                    System.out.println("\tAnnotation name: " + stringIntegerEntry.getKey() + " delay: " + stringIntegerEntry.getValue());
                     Object newObject = fl.getObject();
                     Method newMetod = fl.getMethod();
                     try {
