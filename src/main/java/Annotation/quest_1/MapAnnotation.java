@@ -1,41 +1,78 @@
 package Annotation.quest_1;
 
+import Annotation.quest_1.AnnotationClass;
+import Annotation.quest_1.annotation.annotationPrintSomething;
+import Annotation.quest_1.annotation.annotationRandom;
+import Annotation.quest_1.annotation.annotationSleep;
+import Annotation.quest_1.annotation.annotationSumm;
+import Annotation.quest_1.forList;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class MapAnnotation {
 
     public static void main(String[] args) {
-        AnnotationClass aClazz = new AnnotationClass();
-        Map<String,forList> newMap = annotationHashMap(aClazz);
-        for (Map.Entry<String, forList> entry : newMap.entrySet()) {
-            System.out.println("Method name: " + entry.getKey());
-            forList fl = entry.getValue();
-            for (Map.Entry<String,Integer> stringIntegerEntry : fl.getAnnotationNameAndArgs().entrySet()) {
-                if (stringIntegerEntry.getValue()> 0){
-                    System.out.println("\tAnnotation name: " + stringIntegerEntry.getKey() + " delay: " + stringIntegerEntry.getValue());
-                    Object newObject = fl.getObject();
-                    Method newMetod = fl.getMethod();
-                    try {
-                        try {
-                            Thread.sleep(stringIntegerEntry.getValue());
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+        boolean exit = true;
+        boolean tmp = true;
+
+        while (exit){
+            System.out.println("Enter \"exit\" for out.");
+            System.out.print("Enter name annotation: ");
+            Scanner scan = new Scanner(System.in);
+            String userAnnotationName = scan.nextLine();
+
+            AnnotationClass aClazz = new AnnotationClass();
+            Map<String,forList> newMap = annotationHashMap(aClazz);
+
+
+                if (userAnnotationName.toLowerCase() == "exit") exit = false;
+                for (Map.Entry<String, forList> entry : newMap.entrySet()) {
+                    forList fl = entry.getValue();
+                    for (Map.Entry<String,Integer> stringIntegerEntry : fl.getAnnotationNameAndArgs().entrySet()) {
+                        if (stringIntegerEntry.getKey().equals(userAnnotationName)){
+                            Object newObject = fl.getObject();
+                            Method newMethod = fl.getMethod();
+                            if (stringIntegerEntry.getValue()> 0){
+                                System.out.println("\tAnnotation name: " + stringIntegerEntry.getKey() + ", delay: " + stringIntegerEntry.getValue());
+                                tmp = false;
+                                try {
+                                    try {
+                                        Thread.sleep(stringIntegerEntry.getValue());
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                    newMethod.invoke(newObject);
+                                } catch (IllegalAccessException e) {
+                                    e.printStackTrace();
+                                } catch (InvocationTargetException e) {
+                                    e.printStackTrace();
+                                }
+                            }else {
+                                System.out.println("\tAnnotation name: " + stringIntegerEntry.getKey());
+                                tmp = false;
+                                try {
+                                    newMethod.invoke(newObject);
+                                } catch (IllegalAccessException e) {
+                                    e.printStackTrace();
+                                } catch (InvocationTargetException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                         }
-                        newMetod.invoke(newObject);
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
                     }
-                }else {
-                    System.out.println("\tAnnotation name: " + stringIntegerEntry.getKey());
+
                 }
+                if (tmp) System.out.println("Annotation not found");
             }
-        }
+
+
+
+
     }
 
     public static Map<String, forList> annotationHashMap (Object object){
@@ -43,12 +80,14 @@ public class MapAnnotation {
 
         Class clazz = object.getClass();
         Method[] allMethod = clazz.getDeclaredMethods();
+
         for (Method method : allMethod){
             forList newList = new forList();
             newList.setObject(object);
             newList.setMethod(method);
             newList.setMethodName(method.getName());
             Annotation[] allAnnotation = method.getDeclaredAnnotations();
+
             for (Annotation annotation : allAnnotation){
                 if(annotation.annotationType().equals(annotationSleep.class)){
                     annotationSleep ann = (annotationSleep) annotation;
@@ -73,7 +112,6 @@ public class MapAnnotation {
              }
             methodHashMap.put(method.getName(),newList);
         }
-
         return methodHashMap;
     }
 }

@@ -1,4 +1,4 @@
-package Annotation.quest_1;
+package Annotation.quest_1.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface annotationSumm{
-    String name()default "annotationSumm";
+public @interface annotationRandom{
+    String name() default "annotationRandom";
 }

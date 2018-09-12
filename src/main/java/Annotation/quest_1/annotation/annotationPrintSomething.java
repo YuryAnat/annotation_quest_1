@@ -1,4 +1,4 @@
-package Annotation.quest_1;
+package Annotation.quest_1.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,7 +7,6 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface annotationSleep{
-    String name() default "annotationSleep";
-    int delay();
+public @interface annotationPrintSomething{
+    String name() default "annotationPrintSomething";
 }
