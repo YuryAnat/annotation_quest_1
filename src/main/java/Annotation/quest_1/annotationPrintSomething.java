@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
-    @Retention(RetentionPolicy.RUNTIME)
-    public @interface annotationPrintSomsing{
-        String name() default "annotationPrintSomsing";
-    }
+@Retention(RetentionPolicy.RUNTIME)
+public @interface annotationPrintSomething{
+    String name() default "annotationPrintSomething";
+}

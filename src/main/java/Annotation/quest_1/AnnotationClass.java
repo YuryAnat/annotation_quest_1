@@ -13,7 +13,7 @@ public class AnnotationClass {
     }
 
     @annotationSleep(delay = 5000)
-    @annotationPrintSomsing()
+    @annotationPrintSomething()
     public void Test3(){
         System.out.println("run Test3");
     }
