@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 
 
-public class forList {
+public class ForList {
     private Object object;
     private Method method;
     private String methodName;
